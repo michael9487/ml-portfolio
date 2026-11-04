@@ -9,7 +9,7 @@ const sans = Noto_Sans_TC({ weight: ["400", "500", "700"], variable: "--font-not
 const mono = IBM_Plex_Mono({ weight: ["400"], subsets: ["latin"], variable: "--font-plex-mono" });
 const montserrat = Montserrat({ weight: ["400", "500", "600", "700"], subsets: ["latin"], variable: "--font-montserrat" });
 
-const description = "半年的前端作品，畫成一張星圖。用 LINE 登入後可以收藏與投票，瀏覽統計即時更新。";
+const description = "每個作品，都是一顆星。用 LINE 登入後可以收藏與投票，瀏覽統計即時更新。";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://ml-chen-portfolio.vercel.app"),

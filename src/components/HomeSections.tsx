@@ -40,12 +40,12 @@ export function Hero() {
           Front-end Portfolio
         </p>
         <h2 data-reveal className="mt-5 font-display text-[clamp(2.6rem,7vw,5.5rem)] leading-[1.08]">
-          半年的作品，
+          每個作品，
           <br />
-          畫成一張星圖。
+          都是一顆星。
         </h2>
         <p data-reveal className="mt-6 max-w-md leading-relaxed text-muted">
-          每顆星是一個專案。有人看過、收藏或投票，它就變亮，數字直接來自資料庫。
+          有人看過、收藏或投票，它就變亮，數字直接來自資料庫。
         </p>
         <div data-reveal className="mt-8">
           <a

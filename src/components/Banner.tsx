@@ -2,9 +2,8 @@
 
 import gsap from "gsap";
 import { useEffect, useRef } from "react";
-import { TechIcons } from "./TechIcons";
 
-/** 開頭畫面：背景是 banner 圖，文字、按鈕、技術圖示都是真實 HTML */
+/** 開頭畫面：背景是 banner 圖，文字與按鈕都是真實 HTML */
 export function Banner() {
   const rootRef = useRef<HTMLElement>(null);
   const artRef = useRef<HTMLDivElement>(null);
@@ -114,9 +113,6 @@ export function Banner() {
             </svg>
             Contact Me
           </a>
-        </div>
-        <div data-banner className="mt-5 sm:mt-8">
-          <TechIcons />
         </div>
         </div>
       </div>

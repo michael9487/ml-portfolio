@@ -16,6 +16,10 @@
   <img src="https://img.shields.io/badge/LINE_LIFF-06C755?logo=line&logoColor=white" alt="LINE LIFF">
 </p>
 
+<p align="center">
+  <a href="https://ml-chen-portfolio.vercel.app/"><strong>線上展示 →</strong></a>
+</p>
+
 ![開頭畫面](docs/screenshots/banner.jpg)
 
 ## 這個作品想展示什麼

@@ -163,7 +163,8 @@ export function getStore(): Store | null {
   if (!globalStore.__portfolioStore) {
     globalStore.__portfolioStore =
       mode === "live"
-        ? supabaseStore(createClient(env.supabaseUrl, env.supabaseKey, { auth: { persistSession: false } }))
+        ? // 只取到網域：Supabase 後台顯示的網址常帶 /rest/v1/，client 會自己再補一次而變成無效路徑
+          supabaseStore(createClient(new URL(env.supabaseUrl).origin, env.supabaseKey, { auth: { persistSession: false } }))
         : memoryStore();
   }
   return globalStore.__portfolioStore;

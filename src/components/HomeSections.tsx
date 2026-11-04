@@ -286,9 +286,9 @@ export function LoopSection() {
   return (
     <section className="relative z-10 px-5 py-24 sm:px-8">
       <SectionHead index="05" title="這個網站本身也是作品" note="你走過的步驟會亮起來。登入用 LINE LIFF，資料存在 Supabase，身分由伺服器向 LINE 驗證。" />
-      <ol className="grid gap-px border border-rule bg-rule sm:grid-cols-2 lg:grid-cols-7">
+      <ol data-reveal className="grid gap-px border border-rule bg-rule sm:grid-cols-2 lg:grid-cols-7">
         {steps.map((s, i) => (
-          <li key={s.label} data-reveal className="bg-ink p-5">
+          <li key={s.label} className="bg-ink p-5">
             <span className={`font-mono text-xs ${s.done ? "text-star" : "text-muted"}`}>
               {s.done ? "●" : "○"} {String(i + 1).padStart(2, "0")}
             </span>

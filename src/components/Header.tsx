@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 import { usePortfolio } from "./PortfolioProvider";
 
 const links = [
@@ -18,8 +19,19 @@ export function Header() {
   const pathname = usePathname();
   const user = state?.user;
 
+  // 頁面頂端保持透明；捲動後加底色，內容才不會和導覽列疊在一起
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(() => {
+    const update = () => setScrolled(window.scrollY > 40);
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    return () => window.removeEventListener("scroll", update);
+  }, []);
+
   return (
-    <header className="fixed inset-x-0 top-0 z-40 flex items-center justify-between gap-4 bg-gradient-to-b from-ink/80 to-transparent px-5 py-4 font-hero sm:px-[4.5vw]">
+    <header
+      className={`fixed inset-x-0 top-0 z-40 flex items-center justify-between gap-4 px-5 py-4 font-hero transition-colors duration-300 sm:px-[4.5vw] ${scrolled ? "border-b border-rule/60 bg-ink/85 backdrop-blur-md" : "border-b border-transparent bg-gradient-to-b from-ink/80 to-transparent"}`}
+    >
       <Link href="/" aria-label="回到首頁" className="shrink-0">
         <Image src="/logo.png" alt="ML Web Developer" width={585} height={120} priority className="h-8 w-auto sm:h-11" />
       </Link>

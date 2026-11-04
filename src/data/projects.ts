@@ -51,6 +51,7 @@ export const projects: Project[] = [
     star: [-1.1, 0.75, 0.2],
     line: {
       addFriendUrl: "https://line.me/R/ti/p/%40820jdwus",
+      liffUrl: "https://liff.line.me/2012358470-MrC07YH9",
     },
   },
   {

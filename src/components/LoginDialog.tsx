@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useRef } from "react";
 
 type Props = {
@@ -31,7 +32,11 @@ export function LoginDialog({ reason, demo, busy, onLogin, onClose }: Props) {
         <h2 className="font-display text-2xl">用 LINE 登入</h2>
         <p className="mt-3 text-sm leading-relaxed text-muted">{reason}</p>
         <p className="mt-3 text-xs leading-relaxed text-muted">
-          只用 LINE 身分來記住你的收藏與投票，名稱和頭像不會公開顯示。
+          只用 LINE 身分來記住你的收藏與投票，名稱和頭像不會公開顯示。詳見{" "}
+          <Link href="/privacy" onClick={onClose} className="underline underline-offset-4 hover:text-bone">
+            隱私權政策
+          </Link>
+          。
         </p>
         <div className="mt-6 flex flex-col gap-2">
           <button

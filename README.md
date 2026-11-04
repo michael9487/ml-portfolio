@@ -67,7 +67,11 @@ flowchart LR
 | --- | --- | --- |
 | [沃語國際語言學校](https://verbora-language-school.vercel.app/) | 以虛構語言學校為題的完整網站，含 LINE 會員登入、加好友、分享、掃碼報到與小型後台 | Next.js、TypeScript、Tailwind CSS、Supabase、LINE LIFF、Google Sheets |
 | [FormoSoul](https://tibamef2e.com/tjd103/home) | 七人團隊組長；負責首頁 3D 動畫、最新消息與全部後台頁面 | Vue 3、MySQL、PHP、Element Plus、GSAP、Three.js |
-| 汽車美容形象網站 | 前端開發；獨立完成 RWD、JavaScript 互動動畫、SEO 基礎設定與部署 | JavaScript、Netlify |
+| [好喝茶飲電商網站](https://react-ecommerce-tea-website.vercel.app/) | React 電商作品，含購物車、分類篩選、結帳流程與 LINE 登入 | React、React Router、Context API、MUI、LINE LIFF |
+| 這個作品集網站 | 你正在看的專案 | Next.js、Three.js、GSAP、Supabase、LINE LIFF |
+| LINE 自助洗衣系統（製作中） | 掃 QR Code 啟動機台、查看剩餘時間、洗好收到 LINE 推播 | Next.js、Supabase、LINE LIFF |
+
+另外還有數個形象網站，列在網站的「形象網站」區塊。
 
 ## 技術選擇
 
@@ -158,4 +162,4 @@ supabase/schema.sql    資料表、權限與資料庫函式
 
 ## 新增作品
 
-在 [`src/data/projects.ts`](src/data/projects.ts) 加一筆資料，星圖、排行、投票和專案頁都會自動出現。
+在 [`src/data/projects.ts`](src/data/projects.ts) 的 `projects` 加一筆資料，星圖、排行、投票和專案頁都會自動出現。只想列名稱和連結的網站，加到同一個檔案的 `otherSites`。

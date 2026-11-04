@@ -52,10 +52,9 @@ export default async function ProjectPage({ params }: Props) {
             rel="noreferrer"
             className="rounded-full bg-bone px-5 py-2 text-sm font-medium text-ink transition hover:bg-star"
           >
-            開啟網站 ↗
+            {project.linkLabel ?? "開啟網站"} ↗
           </a>
         )}
-        {!project.url && project.urlNote && <span className="text-sm text-muted">專案網址：{project.urlNote}</span>}
       </div>
 
       {project.cover && (
@@ -66,7 +65,7 @@ export default async function ProjectPage({ params }: Props) {
 
       <div className="mt-14 grid gap-10 sm:grid-cols-2">
         <section>
-          <h2 className="font-display text-2xl">{project.group === "featured" ? "我做了什麼" : "內容"}</h2>
+          <h2 className="font-display text-2xl">主要功能</h2>
           <ul className="mt-4 border-b border-rule">
             {project.features.map((f) => (
               <li key={f.label} className="flex items-baseline justify-between gap-4 border-t border-rule py-3">

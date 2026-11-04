@@ -2,16 +2,15 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { activeProjects, projects, type Project } from "@/data/projects";
+import { activeProjects, otherSites, projects, type Project } from "@/data/projects";
 import { MAX_VOTES } from "@/data/site";
 import { CountUp } from "./Motion";
 import { usePortfolio } from "./PortfolioProvider";
 import { ProjectActions } from "./ProjectActions";
 
-function SectionHead({ index, title, note }: { index: string; title: string; note?: string }) {
+function SectionHead({ title, note }: { title: string; note?: string }) {
   return (
-    <div data-reveal className="mb-10 grid gap-3 border-t border-rule pt-5 sm:grid-cols-[6rem_1fr_minmax(0,22rem)] sm:items-baseline">
-      <span className="font-mono text-xs tracking-widest text-star">{index}</span>
+    <div data-reveal className="mb-10 grid gap-3 border-t border-rule pt-5 sm:grid-cols-[1fr_minmax(0,22rem)] sm:items-baseline">
       <h2 className="font-display text-3xl sm:text-4xl">{title}</h2>
       {note && <p className="text-sm leading-relaxed text-muted">{note}</p>}
     </div>
@@ -84,7 +83,6 @@ export function Ranking() {
   return (
     <section id="ranking" className="relative z-10 px-5 py-24 sm:px-8">
       <SectionHead
-        index="01"
         title="熱門專案 TOP 5"
         note={
           state && empty
@@ -159,54 +157,45 @@ function FeaturedCard({ project, index }: { project: Project; index: number }) {
 }
 
 export function Featured() {
-  const featured = activeProjects.filter((p) => p.group === "featured");
-  const upcoming = projects.find((p) => p.soon);
+  const upcoming = projects.filter((p) => p.soon);
   return (
     <section id="works" className="relative z-10 scroll-mt-16 px-5 py-24 sm:px-8">
-      <SectionHead index="02" title="主要作品" />
+      <SectionHead title="主要作品" />
       <div className="flex flex-col gap-20">
-        {featured.map((p, i) => (
+        {activeProjects.map((p, i) => (
           <FeaturedCard key={p.id} project={p} index={i} />
         ))}
-        {upcoming && (
-          <div data-reveal className="border border-dashed border-rule px-6 py-12 text-center">
-            <p className="font-display text-2xl text-bone/70">{upcoming.title}</p>
-            <p className="mt-2 text-sm text-muted">第三個專案製作中，完成後會出現在星圖上。</p>
+        {upcoming.map((p) => (
+          <div key={p.id} data-reveal className="border border-dashed border-rule px-6 py-12 text-center">
+            <p className="text-sm text-star">{p.subtitle}</p>
+            <p className="mt-2 font-display text-2xl text-bone/80">{p.title}</p>
+            <p className="mx-auto mt-3 max-w-xl text-sm leading-relaxed text-muted">{p.summary}</p>
           </div>
-        )}
+        ))}
       </div>
     </section>
   );
 }
 
 export function OtherWorks() {
-  const others = activeProjects.filter((p) => p.group === "other");
   return (
     <section className="relative z-10 px-5 py-24 sm:px-8">
-      <SectionHead index="03" title="形象網站" />
-      <ul className="border-b border-rule">
-        {others.map((p) => (
-          <li key={p.id} data-reveal className="grid gap-4 border-t border-rule py-7 sm:grid-cols-[1fr_auto] sm:items-center">
-            <div>
-              <h3 className="text-xl">
-                <Link href={`/projects/${p.id}`} className="transition hover:text-star">
-                  {p.title}
-                  <span className="text-muted">｜{p.subtitle}</span>
-                </Link>
-              </h3>
-              <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted">{p.summary}</p>
-              <p className="mt-2 text-sm text-muted">
-                專案網址：
-                {p.url ? (
-                  <a href={p.url} target="_blank" rel="noreferrer" className="text-bone underline underline-offset-4">
-                    {p.urlNote ?? p.url}
-                  </a>
-                ) : (
-                  p.urlNote
-                )}
-              </p>
-            </div>
-            <ProjectActions projectId={p.id} />
+      <SectionHead title="形象網站" />
+      <ul data-reveal className="flex flex-wrap gap-x-10 gap-y-4 text-lg">
+        {otherSites.map((site) => (
+          <li key={site.name}>
+            {site.url ? (
+              <a
+                href={site.url}
+                target="_blank"
+                rel="noreferrer"
+                className="underline decoration-bone/40 underline-offset-[6px] transition hover:text-star hover:decoration-star"
+              >
+                {site.name}
+              </a>
+            ) : (
+              site.name
+            )}
           </li>
         ))}
       </ul>
@@ -221,7 +210,7 @@ export function VoteSection() {
 
   return (
     <section id="vote" className="relative z-10 scroll-mt-16 px-5 py-24 sm:px-8">
-      <SectionHead index="04" title="你最喜歡哪個專案？" note={`每個 LINE 帳號有 ${MAX_VOTES} 票，每個專案最多投一票，可以隨時收回。`} />
+      <SectionHead title="你最喜歡哪個專案？" note={`每個 LINE 帳號有 ${MAX_VOTES} 票，每個專案最多投一票，可以隨時收回。`} />
       <p data-reveal className="mb-6 flex items-center gap-3 text-sm text-muted">
         <span aria-hidden="true" className="text-lg tracking-widest text-star">
           {stars.map((on, i) => (
@@ -285,7 +274,7 @@ export function LoopSection() {
   ];
   return (
     <section className="relative z-10 px-5 py-24 sm:px-8">
-      <SectionHead index="05" title="這個網站本身也是作品" note="你走過的步驟會亮起來。登入用 LINE LIFF，資料存在 Supabase，身分由伺服器向 LINE 驗證。" />
+      <SectionHead title="這個網站本身也是作品" note="你走過的步驟會亮起來。登入用 LINE LIFF，資料存在 Supabase，身分由伺服器向 LINE 驗證。" />
       <ol data-reveal className="grid gap-px border border-rule bg-rule sm:grid-cols-2 lg:grid-cols-7">
         {steps.map((s, i) => (
           <li key={s.label} className="bg-ink p-5">

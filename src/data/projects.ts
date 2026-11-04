@@ -87,7 +87,7 @@ export const projects: Project[] = [
   },
   {
     id: "portfolio",
-    title: "這個作品集網站",
+    title: "作品集網站",
     subtitle: "ML Portfolio",
     summary:
       "你正在看的這個網站。瀏覽、收藏與投票都寫進資料庫，排行和星圖會跟著改變，身分由伺服器向 LINE 驗證。",

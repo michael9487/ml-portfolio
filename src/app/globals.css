@@ -43,6 +43,35 @@ button:not(:disabled) {
   cursor: pointer;
 }
 
+/*
+  開頭背景（橫向）：一般螢幕等同 cover 並靠右下對齊。
+  比圖片更寬的螢幕改成高度貼齊、靠右，圖才不會往上頂到導覽列，放大倍率也較低。
+*/
+.banner-fade {
+  display: none;
+}
+
+@media (orientation: landscape) {
+  .banner-art {
+    right: 0;
+    bottom: 0;
+    aspect-ratio: 1672 / 941;
+    width: max(100vw, calc(100svh * 1672 / 941));
+  }
+}
+
+@media (orientation: landscape) and (min-aspect-ratio: 1672 / 941) {
+  .banner-art {
+    top: 0;
+    bottom: auto;
+    width: auto;
+    height: 100%;
+  }
+  .banner-fade {
+    display: block;
+  }
+}
+
 .caret {
   animation: caret-blink 1.1s steps(2, jump-none) infinite;
 }

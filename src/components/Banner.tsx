@@ -51,7 +51,7 @@ export function Banner() {
       */}
       <div
         ref={artRef}
-        className="absolute scale-[1.03] portrait:inset-0 portrait:scale-100 landscape:right-0 landscape:bottom-0 landscape:aspect-[1672/941] landscape:w-[max(100vw,calc(100svh*1672/941))]"
+        className="banner-art absolute scale-[1.03] portrait:inset-0 portrait:scale-100"
       >
         {/* picture 讓瀏覽器只下載符合方向的那一張 */}
         <picture>
@@ -59,6 +59,8 @@ export function Banner() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/banner-hero.webp" alt="" fetchPriority="high" className="absolute inset-0 size-full object-cover" />
         </picture>
+        {/* 寬螢幕時圖片靠右，左側用漸層接到底色 */}
+        <div aria-hidden="true" className="banner-fade pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-ink to-transparent" />
         <a
           href="#hero"
           aria-label="Scroll Down"
@@ -68,7 +70,7 @@ export function Banner() {
 
       <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-ink to-transparent portrait:hidden" />
 
-      <div className="pointer-events-none relative flex max-w-[min(46vw,44rem)] flex-col font-hero portrait:max-w-none portrait:flex-1 portrait:justify-between [&_a]:pointer-events-auto">
+      <div className="pointer-events-none relative flex max-w-[min(46vw,52rem)] flex-col font-hero portrait:max-w-none portrait:flex-1 portrait:justify-between [&_a]:pointer-events-auto">
         <div>
         <p
           data-banner
@@ -84,7 +86,7 @@ export function Banner() {
         >
           Building Modern
           <br />
-          <span className="bg-gradient-to-r from-brand-sky via-brand-sky to-brand-violet bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-brand-sky via-brand-sky to-brand-violet bg-clip-text whitespace-nowrap text-transparent">
             Web Experiences
           </span>
           <span aria-hidden="true" className="caret ml-1 font-light text-brand-violet">

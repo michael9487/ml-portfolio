@@ -1,5 +1,6 @@
 "use client";
 
+import { showCount } from "@/data/site";
 import { usePortfolio } from "./PortfolioProvider";
 
 export function ProjectActions({ projectId }: { projectId: string }) {
@@ -23,7 +24,7 @@ export function ProjectActions({ projectId }: { projectId: string }) {
           ♥
         </span>
         {favorited ? "已收藏" : "收藏"}
-        <span className="font-mono text-xs">{stats.favorites}</span>
+        {showCount(stats.favorites) && <span className="font-mono text-xs">{stats.favorites}</span>}
       </button>
       <button
         type="button"
@@ -36,7 +37,7 @@ export function ProjectActions({ projectId }: { projectId: string }) {
           ★
         </span>
         {voted ? "已投票" : "投一票"}
-        <span className="font-mono text-xs">{stats.votes}</span>
+        {showCount(stats.votes) && <span className="font-mono text-xs">{stats.votes}</span>}
       </button>
     </div>
   );

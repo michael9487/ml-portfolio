@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { activeProjects, otherSites, projects, type Project } from "@/data/projects";
-import { MAX_VOTES } from "@/data/site";
+import { MAX_VOTES, SHOW_COUNT_FROM, showCount } from "@/data/site";
 import { CountUp } from "./Motion";
 import { usePortfolio } from "./PortfolioProvider";
 import { ProjectActions } from "./ProjectActions";
@@ -56,16 +56,18 @@ export function Hero() {
             <span aria-hidden="true">↓</span>
           </a>
         </div>
-        <dl data-reveal className="mt-10 grid max-w-lg grid-cols-4 gap-3">
-          {figures.map((f) => (
+        {state?.mode !== "off" && figures.some((f) => showCount(f.value)) && (
+        <dl data-reveal className="mt-10 flex max-w-lg flex-wrap gap-x-10 gap-y-4">
+          {figures.filter((f) => showCount(f.value)).map((f) => (
             <div key={f.label}>
               <dt className="text-[11px] text-muted sm:text-xs">{f.label}</dt>
               <dd className="mt-1 font-mono text-xl text-bone sm:text-2xl">
-                {state?.mode === "off" ? "—" : <CountUp value={f.value} />}
+                <CountUp value={f.value} />
               </dd>
             </div>
           ))}
         </dl>
+        )}
       </div>
     </section>
   );
@@ -87,7 +89,7 @@ export function Ranking() {
         note={
           state && empty
             ? "還沒有瀏覽紀錄，點進任何一個作品，它就會排上來。"
-            : "點進作品就會記錄一次瀏覽，同一位訪客 30 分鐘內只算一次。"
+            : `點進作品就會記錄一次瀏覽，同一位訪客 30 分鐘內只算一次。長條是彼此的比例，達 ${SHOW_COUNT_FROM} 次才顯示數字。`
         }
       />
       <ol className="border-b border-rule">
@@ -109,8 +111,14 @@ export function Ranking() {
                 />
               </span>
               <span className="text-right font-mono text-sm">
-                <CountUp value={r.stats.views} /> <span className="text-xs text-muted">次</span>
-                <span className="block text-xs text-muted">{r.stats.visitors} 位訪客</span>
+                {showCount(r.stats.views) && (
+                  <>
+                    <CountUp value={r.stats.views} /> <span className="text-xs text-muted">次</span>
+                  </>
+                )}
+                {showCount(r.stats.visitors) && (
+                  <span className="block text-xs text-muted">{r.stats.visitors} 位訪客</span>
+                )}
               </span>
             </Link>
           </li>
@@ -248,7 +256,11 @@ export function VoteSection() {
                     {p.title}
                   </span>
                   <span className="font-mono text-sm whitespace-nowrap">
-                    {votes} 票 <span className="text-muted">· {share}%</span>
+                    {showCount(total) && (
+                      <>
+                        {votes} 票 <span className="text-muted">· {share}%</span>
+                      </>
+                    )}
                   </span>
                 </span>
               </button>

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { projects } from "@/data/projects";
+import { showCount } from "@/data/site";
 import { usePortfolio } from "../PortfolioProvider";
 import type { createStarChart } from "./scene";
 
@@ -96,9 +97,11 @@ export function StarChart() {
           const body = (
             <>
               <span className="block text-sm whitespace-nowrap text-bone">{p.title}</span>
-              <span className="mt-0.5 block font-mono text-[11px] tracking-wide text-muted">
-                {p.soon ? "製作中" : `${statsFor(p.id).views} 次瀏覽`}
-              </span>
+              {(p.soon || showCount(statsFor(p.id).views)) && (
+                <span className="mt-0.5 block font-mono text-[11px] tracking-wide text-muted">
+                  {p.soon ? "製作中" : `${statsFor(p.id).views} 次瀏覽`}
+                </span>
+              )}
             </>
           );
           const className = "absolute top-0 left-0 block will-change-transform";

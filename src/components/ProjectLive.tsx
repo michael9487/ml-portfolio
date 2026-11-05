@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { showCount } from "@/data/site";
 import { CountUp } from "./Motion";
 import { usePortfolio } from "./PortfolioProvider";
 
@@ -16,7 +17,7 @@ export function ProjectLiveStats({ projectId }: { projectId: string }) {
     recordView(projectId);
   }, [projectId, recordView]);
 
-  if (state?.mode === "off") return null;
+  if (state?.mode === "off" || !showCount(stats.views)) return null;
   return (
     <dl className="flex gap-8">
       <div>
@@ -25,12 +26,14 @@ export function ProjectLiveStats({ projectId }: { projectId: string }) {
           <CountUp value={stats.views} />
         </dd>
       </div>
-      <div>
-        <dt className="text-xs text-muted">不重複訪客</dt>
-        <dd className="mt-1 font-mono text-2xl">
-          <CountUp value={stats.visitors} />
-        </dd>
-      </div>
+      {showCount(stats.visitors) && (
+        <div>
+          <dt className="text-xs text-muted">不重複訪客</dt>
+          <dd className="mt-1 font-mono text-2xl">
+            <CountUp value={stats.visitors} />
+          </dd>
+        </div>
+      )}
     </dl>
   );
 }

@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { activeProjects, otherSites, projects, type Project } from "@/data/projects";
-import { MAX_VOTES, SHOW_COUNT_FROM, showCount } from "@/data/site";
+import { MAX_VOTES, showCount } from "@/data/site";
 import { CountUp } from "./Motion";
 import { usePortfolio } from "./PortfolioProvider";
 import { ProjectActions } from "./ProjectActions";
@@ -86,11 +86,7 @@ export function Ranking() {
     <section id="ranking" className="relative z-10 px-5 py-24 sm:px-8">
       <SectionHead
         title="熱門專案 TOP 5"
-        note={
-          state && empty
-            ? "還沒有瀏覽紀錄，點進任何一個作品，它就會排上來。"
-            : `點進作品就會記錄一次瀏覽，同一位訪客 30 分鐘內只算一次。長條是彼此的比例，達 ${SHOW_COUNT_FROM} 次才顯示數字。`
-        }
+        note={state && empty ? "還沒有瀏覽紀錄，點進任何一個作品，它就會排上來。" : undefined}
       />
       <ol className="border-b border-rule">
         {rows.map((r, i) => (

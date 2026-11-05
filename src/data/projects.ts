@@ -98,8 +98,6 @@ export const projects: Project[] = [
       { label: "每個帳號 3 票的專案投票" },
       { label: "由統計數字驅動的 3D 星圖" },
     ],
-    url: "https://github.com/michael9487/ml-portfolio",
-    linkLabel: "看原始碼",
     cover: "/covers/portfolio.jpg",
     star: [0.35, -0.6, -0.1],
   },

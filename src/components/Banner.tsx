@@ -57,7 +57,14 @@ export function Banner() {
         <picture>
           <source media="(orientation: portrait)" srcSet="/banner-hero-m.webp" />
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/banner-hero.webp" alt="" fetchPriority="high" className="absolute inset-0 size-full object-cover" />
+          <img
+            src="/banner-hero.webp"
+            srcSet="/banner-hero.webp 1672w, /banner-hero-2x.webp 3344w"
+            sizes="max(100vw, 178svh)"
+            alt=""
+            fetchPriority="high"
+            className="absolute inset-0 size-full object-cover"
+          />
         </picture>
         {/* 寬螢幕時圖片靠右，左側用漸層接到底色 */}
         <div aria-hidden="true" className="banner-fade pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-ink to-transparent" />
